@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | Ayurveda</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header fade-in delay-1">
+    <div class="topbar">Free Shipping on orders over ₹999 🌿</div>
+
+    <nav class="navbar container">
+      <a class="brand" href="index.html">Ayurveda</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="combos.html">Combos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="track-order.html">Track Order</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="icon active" href="cart.html" title="Cart">🛒</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="cart-section fade-in delay-2">
+    <div class="container">
+      <h1>Your Shopping Cart</h1>
+
+      <div class="cart-container">
+       
+        <div class="cart-items slide-up delay-3">
+          <div class="cart-item">
+            <img src="pic9.jpg" alt="Herbal Face Cream">
+            <div class="item-details">
+              <h3>Herbal Face Cream</h3>
+              <p>100% Organic, 50g</p>
+              <div class="item-controls">
+                <input type="number" value="1" min="1">
+                <span class="price">₹299</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item">
+            <img src="pic10.jpg" alt="Aloe Vera Gel">
+            <div class="item-details">
+              <h3>Aloe Vera Gel</h3>
+              <p>Natural Soothing Skin Gel, 100g</p>
+              <div class="item-controls">
+                <input type="number" value="2" min="1">
+                <span class="price">₹199</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-summary slide-up delay-3">
+          <h2>Order Summary</h2>
+          <p>Subtotal: <span id="subtotal">₹0</span></p>
+          <p>Discount: <span id="discount">₹50</span></p>
+          <hr>
+          <p><strong>Total: <span id="total">₹0</span></strong></p>
+          <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer slide-up delay-3">
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>About Us</h3>
+        <p>We provide 100% natural and herbal products made with care to enhance your beauty and wellness.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="offers.html">Offers</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Contact</h3>
+        <p>Email: support@herbal.com</p>
+        <p>Phone: +91 6230575844</p>
+        <p>Address: 123 Herbal Street, Himachal Pradesh</p>
+      </div>
+
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <p>
+          <a href="#">Instagram</a> | 
+          <a href="#">Facebook</a> | 
+          <a href="#">Twitter</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Herbal Store. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const inputs = document.querySelectorAll('.cart-item input');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+
+    function updateTotal() {
+      let subtotal = 0;
+      document.querySelectorAll('.cart-item').forEach((item) => {
+        const qty = parseInt(item.querySelector('input').value);
+        const price = parseInt(item.querySelector('.price').textContent.replace('₹', '').trim());
+        subtotal += qty * price;
+      });
+      const discount = 50;
+      subtotalEl.textContent = `₹${subtotal}`;
+      totalEl.textContent = `₹${subtotal - discount}`;
+    }
+
+    // Recalculate when quantities change
+    inputs.forEach(i => i.addEventListener('input', updateTotal));
+
+    // Calculate on page load
+    window.addEventListener('DOMContentLoaded', updateTotal);
+  </script>
+</body>
+</html>
